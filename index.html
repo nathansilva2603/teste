@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Fruit Spin</title>
 
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 * {
@@ -16,56 +18,103 @@
 
 :root {
     --bg: #050812;
-    --panel: rgba(14, 20, 36, .88);
+    --panel: rgba(14,20,36,.88);
     --border: rgba(255,255,255,.09);
     --text: #f4f7ff;
     --muted: #8c96ad;
+
     --gold: #ffd84d;
-    --blue: #4aa3ff;
-    --purple: #b56cff;
-    --red: #ff536b;
+
+    --common: #b6c0d1;
+    --uncommon: #45d879;
+    --rare: #55a8ff;
+    --epic: #b56cff;
+    --legendary: #ffad48;
+    --mythical: #ff4d75;
+    --divine: #ffe36e;
 }
 
 body {
     min-height: 100vh;
+
     color: var(--text);
-    font-family: Inter, Arial, sans-serif;
+
+    font-family:
+        Inter,
+        Arial,
+        sans-serif;
+
     background:
-        radial-gradient(circle at 50% -10%, #182d61 0%, transparent 38%),
-        radial-gradient(circle at 10% 80%, #21113c 0%, transparent 28%),
+        radial-gradient(
+            circle at 50% -10%,
+            #182d61 0%,
+            transparent 38%
+        ),
+        radial-gradient(
+            circle at 10% 80%,
+            #21113c 0%,
+            transparent 28%
+        ),
         var(--bg);
+
     overflow-x: hidden;
 }
 
 body::before {
     content: "";
+
     position: fixed;
+
     inset: 0;
+
     pointer-events: none;
+
     opacity: .28;
+
     background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        );
+
     background-size: 50px 50px;
 }
 
+/* HEADER */
+
 header {
     height: 72px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     padding: 0 28px;
-    border-bottom: 1px solid var(--border);
-    background: rgba(3,6,14,.72);
+
+    border-bottom:
+        1px solid var(--border);
+
+    background:
+        rgba(3,6,14,.72);
+
     backdrop-filter: blur(18px);
+
     position: sticky;
     top: 0;
+
     z-index: 20;
 }
 
 .logo {
     font-weight: 900;
+
     font-size: 21px;
+
     letter-spacing: -1px;
 }
 
@@ -76,212 +125,480 @@ header {
 .balance {
     display: flex;
     align-items: center;
+
     gap: 8px;
+
     padding: 10px 16px;
-    border: 1px solid rgba(255,216,77,.2);
-    background: rgba(255,216,77,.06);
+
+    border:
+        1px solid
+        rgba(255,216,77,.2);
+
+    background:
+        rgba(255,216,77,.06);
+
     border-radius: 12px;
+
     font-weight: 800;
 }
 
 .coin {
     width: 22px;
     height: 22px;
+
     display: grid;
     place-items: center;
+
     border-radius: 50%;
-    background: linear-gradient(135deg,#fff0a0,#e9a800);
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff0a0,
+            #e9a800
+        );
+
     color: #664600;
+
     font-size: 12px;
 }
 
+/* MAIN */
+
 main {
-    width: min(1250px, calc(100% - 30px));
+    width:
+        min(
+            1250px,
+            calc(100% - 30px)
+        );
+
     margin: 0 auto;
-    padding: 42px 0 80px;
+
+    padding:
+        42px 0 80px;
 }
 
 .hero {
     text-align: center;
+
     margin-bottom: 28px;
 }
 
 .hero h1 {
-    font-size: clamp(32px, 5vw, 62px);
+    font-size:
+        clamp(
+            32px,
+            5vw,
+            62px
+        );
+
     line-height: 1;
+
     font-weight: 900;
+
     letter-spacing: -3px;
-    background: linear-gradient(90deg,#fff,#9bcaff,#fff);
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #9bcaff,
+            #fff
+        );
+
     -webkit-background-clip: text;
+
+    background-clip: text;
+
     color: transparent;
 }
 
 .hero p {
     margin-top: 13px;
+
     color: var(--muted);
 }
 
 .layout {
     display: grid;
-    grid-template-columns: 1fr 340px;
+
+    grid-template-columns:
+        1fr
+        340px;
+
     gap: 22px;
 }
 
+/* PAINEL */
+
 .panel {
-    border: 1px solid var(--border);
-    background: var(--panel);
+    border:
+        1px solid var(--border);
+
+    background:
+        var(--panel);
+
     border-radius: 24px;
-    box-shadow: 0 25px 80px rgba(0,0,0,.25);
-    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 25px 80px
+        rgba(0,0,0,.25);
+
+    backdrop-filter:
+        blur(20px);
 }
 
 .spin-panel {
     min-height: 610px;
+
     padding: 24px;
+
     overflow: hidden;
 }
+
+/* ROLETA */
 
 .roulette {
     position: relative;
+
     height: 380px;
+
     border-radius: 20px;
-    border: 1px solid rgba(255,255,255,.06);
+
+    border:
+        1px solid
+        rgba(255,255,255,.06);
+
     background:
-        radial-gradient(circle at center, rgba(58,111,196,.13), transparent 40%),
+        radial-gradient(
+            circle at center,
+            rgba(58,111,196,.13),
+            transparent 40%
+        ),
         rgba(0,0,0,.16);
+
     overflow: hidden;
 }
 
+/*
+===========================================================
+INDICADOR CENTRAL
+===========================================================
+*/
+
 .pointer {
     position: absolute;
-    z-index: 10;
+
+    z-index: 50;
+
     top: 0;
+
     left: 50%;
-    transform: translateX(-50%);
+
+    transform:
+        translateX(-50%);
+
     width: 0;
     height: 0;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-top: 28px solid var(--gold);
-    filter: drop-shadow(0 0 8px rgba(255,216,77,.5));
+
+    border-left:
+        15px solid transparent;
+
+    border-right:
+        15px solid transparent;
+
+    border-top:
+        28px solid var(--gold);
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            rgba(255,216,77,.6)
+        );
 }
+
+/*
+Linha vertical sutil no centro.
+*/
+
+.roulette::after {
+    content: "";
+
+    position: absolute;
+
+    z-index: 30;
+
+    top: 0;
+    bottom: 0;
+
+    left: 50%;
+
+    width: 1px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(255,216,77,.28),
+            transparent
+        );
+
+    pointer-events: none;
+}
+
+/*
+===========================================================
+TRACK
+
+IMPORTANTE:
+left: 0
+
+O JavaScript calcula todo o deslocamento
+a partir desse ponto.
+===========================================================
+*/
 
 .track {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    gap: 12px;
     position: absolute;
-    left: 50%;
-    transform: translateX(0);
-    transition: transform 5.2s cubic-bezier(.08,.78,.12,1);
+
+    left: 0;
+    top: 0;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    transform:
+        translate3d(0,0,0);
+
+    transition:
+        transform
+        5.2s
+        cubic-bezier(.08,.78,.12,1);
+
     will-change: transform;
+
+    /*
+    Impede o navegador de quebrar
+    o cálculo dos cards.
+    */
+    width: max-content;
 }
 
+/* CARD */
+
 .fruit-card {
-    flex: 0 0 145px;
+    flex:
+        0 0 145px;
+
+    width: 145px;
+
     height: 190px;
+
     border-radius: 20px;
-    border: 1px solid rgba(255,255,255,.08);
-    background: linear-gradient(160deg,#151e35,#0c1120);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    background:
+        linear-gradient(
+            160deg,
+            #151e35,
+            #0c1120
+        );
+
     display: flex;
+
     flex-direction: column;
+
     justify-content: center;
+
     align-items: center;
+
     gap: 12px;
-    box-shadow: 0 12px 30px rgba(0,0,0,.3);
+
+    box-shadow:
+        0 12px 30px
+        rgba(0,0,0,.3);
+
+    user-select: none;
 }
 
 .fruit-icon {
     width: 92px;
     height: 92px;
+
     display: grid;
+
     place-items: center;
+
     border-radius: 28px;
+
     font-size: 58px;
-    background: rgba(255,255,255,.045);
-    box-shadow: inset 0 0 30px rgba(255,255,255,.03);
+
+    background:
+        rgba(255,255,255,.045);
+
+    box-shadow:
+        inset 0 0 30px
+        rgba(255,255,255,.03);
 }
 
 .fruit-name {
     font-size: 14px;
+
     font-weight: 800;
 }
 
 .rarity {
     font-size: 10px;
+
     text-transform: uppercase;
+
     letter-spacing: 1px;
+
     font-weight: 900;
 }
 
-.common { color: #b6c0d1; }
-.uncommon { color: #45d879; }
-.rare { color: #55a8ff; }
-.epic { color: #b56cff; }
-.legendary { color: #ffad48; }
-.mythical { color: #ff4d75; }
-.divine { color: #ffe36e; }
+.common {
+    color: var(--common);
+}
+
+.uncommon {
+    color: var(--uncommon);
+}
+
+.rare {
+    color: var(--rare);
+}
+
+.epic {
+    color: var(--epic);
+}
+
+.legendary {
+    color: var(--legendary);
+}
+
+.mythical {
+    color: var(--mythical);
+}
+
+.divine {
+    color: var(--divine);
+}
+
+/* CONTROLES */
 
 .spin-controls {
     display: flex;
+
     justify-content: center;
+
     align-items: center;
+
     gap: 12px;
+
     margin-top: 24px;
 }
 
 .spin-button {
     border: none;
+
     cursor: pointer;
+
     color: #1d1600;
+
     font-size: 17px;
+
     font-weight: 900;
-    padding: 16px 52px;
+
+    padding:
+        16px 52px;
+
     border-radius: 15px;
-    background: linear-gradient(135deg,#fff07b,#ffc21c);
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff07b,
+            #ffc21c
+        );
+
     box-shadow:
-        0 8px 25px rgba(255,193,28,.18),
-        inset 0 1px rgba(255,255,255,.7);
-    transition: .2s;
+        0 8px 25px
+        rgba(255,193,28,.18),
+
+        inset 0 1px
+        rgba(255,255,255,.7);
+
+    transition:
+        transform .2s,
+        box-shadow .2s;
 }
 
 .spin-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 35px rgba(255,193,28,.3);
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 35px
+        rgba(255,193,28,.3);
 }
 
 .spin-button:active {
-    transform: scale(.97);
+    transform:
+        scale(.97);
 }
 
 .spin-button:disabled {
     cursor: not-allowed;
+
     opacity: .45;
+
     transform: none;
 }
 
 .cost {
+    margin-top: 10px;
+
+    text-align: center;
+
     color: var(--muted);
+
     font-size: 12px;
 }
 
 .result {
     margin-top: 18px;
+
     text-align: center;
+
     min-height: 45px;
 }
 
 .result-title {
     font-size: 13px;
+
     color: var(--muted);
 }
 
 .result-fruit {
     margin-top: 3px;
+
     font-size: 23px;
+
     font-weight: 900;
 }
+
+/* SIDEBAR */
 
 .side {
     padding: 22px;
@@ -289,43 +606,62 @@ main {
 
 .side h2 {
     font-size: 17px;
+
     margin-bottom: 17px;
 }
 
 .chance-list {
     display: flex;
+
     flex-direction: column;
+
     gap: 9px;
 }
 
 .chance {
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
-    padding: 11px 12px;
+
+    padding:
+        11px 12px;
+
     border-radius: 11px;
-    background: rgba(255,255,255,.035);
+
+    background:
+        rgba(255,255,255,.035);
 }
 
 .chance-left {
     display: flex;
+
     align-items: center;
+
     gap: 8px;
+
     font-size: 12px;
+
     font-weight: 700;
 }
 
 .dot {
     width: 8px;
     height: 8px;
+
     border-radius: 50%;
 }
 
 .chance-value {
     color: var(--muted);
+
     font-size: 11px;
+
     font-weight: 700;
 }
+
+/* INVENTÁRIO */
 
 .inventory {
     margin-top: 22px;
@@ -333,44 +669,72 @@ main {
 
 .inventory-header {
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
     margin-bottom: 12px;
 }
 
 .inventory-count {
     font-size: 11px;
+
     color: var(--muted);
 }
 
 .inventory-grid {
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+
+    grid-template-columns:
+        repeat(4,1fr);
+
     gap: 8px;
 }
 
 .inv {
     aspect-ratio: 1;
+
     border-radius: 13px;
-    background: rgba(255,255,255,.035);
-    border: 1px solid rgba(255,255,255,.05);
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid
+        rgba(255,255,255,.05);
+
     display: grid;
+
     place-items: center;
+
     font-size: 27px;
+
     position: relative;
 }
 
 .inv-count {
     position: absolute;
+
     right: 5px;
     bottom: 4px;
+
     font-size: 9px;
+
     font-weight: 900;
+
     color: white;
-    background: rgba(0,0,0,.6);
+
+    background:
+        rgba(0,0,0,.6);
+
     border-radius: 5px;
-    padding: 2px 4px;
+
+    padding:
+        2px 4px;
 }
+
+/* HISTÓRICO */
 
 .history {
     margin-top: 22px;
@@ -378,55 +742,105 @@ main {
 
 .history-list {
     display: flex;
+
     flex-direction: column;
+
     gap: 7px;
+
     max-height: 180px;
+
     overflow-y: auto;
 }
 
 .history-item {
     display: flex;
+
     align-items: center;
+
     gap: 9px;
+
     padding: 8px;
-    background: rgba(255,255,255,.025);
+
+    background:
+        rgba(255,255,255,.025);
+
     border-radius: 9px;
+
     font-size: 11px;
 }
 
 .history-item span:last-child {
     margin-left: auto;
+
     color: var(--muted);
 }
+
+/* LEGENDA */
 
 .legend {
     margin-top: 25px;
+
     padding: 14px;
+
     border-radius: 14px;
-    background: rgba(255,255,255,.025);
-    border: 1px solid var(--border);
+
+    background:
+        rgba(255,255,255,.025);
+
+    border:
+        1px solid var(--border);
+
     font-size: 11px;
+
     line-height: 1.6;
+
     color: var(--muted);
 }
 
+/* FLASH */
+
 .flash {
-    animation: flash .65s ease;
+    animation:
+        flash .65s ease;
 }
 
 @keyframes flash {
-    0% { box-shadow: 0 0 0 rgba(255,216,77,0); }
-    50% { box-shadow: 0 0 80px rgba(255,216,77,.35); }
-    100% { box-shadow: 0 0 0 rgba(255,216,77,0); }
+
+    0% {
+        box-shadow:
+            0 0 0
+            rgba(255,216,77,0);
+    }
+
+    50% {
+        box-shadow:
+            0 0 80px
+            rgba(255,216,77,.35);
+    }
+
+    100% {
+        box-shadow:
+            0 0 0
+            rgba(255,216,77,0);
+    }
 }
 
+/* RESPONSIVO */
+
 @media(max-width: 850px) {
+
     header {
-        padding: 0 15px;
+        padding:
+            0 15px;
     }
 
     main {
-        width: min(100% - 18px, 650px);
+        width:
+            min(
+                100% - 18px,
+                650px
+            );
+
         padding-top: 25px;
     }
 
@@ -436,6 +850,7 @@ main {
 
     .spin-panel {
         min-height: auto;
+
         padding: 12px;
     }
 
@@ -445,12 +860,16 @@ main {
 
     .fruit-card {
         flex-basis: 120px;
+
+        width: 120px;
+
         height: 165px;
     }
 
     .fruit-icon {
         width: 76px;
         height: 76px;
+
         font-size: 47px;
     }
 
@@ -458,112 +877,240 @@ main {
         padding: 17px;
     }
 }
+
+@media(max-width: 420px) {
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .fruit-card {
+        flex-basis: 110px;
+
+        width: 110px;
+
+        height: 155px;
+    }
+
+    .fruit-icon {
+        width: 68px;
+        height: 68px;
+
+        font-size: 40px;
+    }
+
+    .fruit-name {
+        font-size: 12px;
+    }
+
+    .spin-button {
+        width: 100%;
+
+        padding:
+            15px;
+    }
+}
+
 </style>
 </head>
+
 
 <body>
 
 <header>
-    <div class="logo">FRUIT<span>SPIN</span></div>
+
+    <div class="logo">
+        FRUIT<span>SPIN</span>
+    </div>
 
     <div class="balance">
-        <div class="coin">B</div>
-        <span id="money">100,000</span>
+
+        <div class="coin">
+            B
+        </div>
+
+        <span id="money">
+            100,000
+        </span>
+
     </div>
+
 </header>
+
 
 <main>
 
 <section class="hero">
-    <h1>FRUIT SPIN</h1>
-    <p>Gire para descobrir sua próxima fruta.</p>
+
+    <h1>
+        FRUIT SPIN
+    </h1>
+
+    <p>
+        Gire para descobrir sua próxima fruta.
+    </p>
+
 </section>
+
 
 <div class="layout">
 
-<section class="panel spin-panel" id="spinPanel">
+
+<section
+    class="panel spin-panel"
+    id="spinPanel"
+>
 
     <div class="roulette">
+
         <div class="pointer"></div>
-        <div class="track" id="track"></div>
+
+        <div
+            class="track"
+            id="track"
+        ></div>
+
     </div>
+
 
     <div class="spin-controls">
-        <button class="spin-button" id="spinButton">
+
+        <button
+            class="spin-button"
+            id="spinButton"
+        >
             GIRAR
         </button>
+
     </div>
+
 
     <div class="cost">
-        Custo: <b>2.500 Beli</b>
+
+        Custo:
+        <b>2.500 Beli</b>
+
     </div>
 
+
     <div class="result">
-        <div class="result-title">ÚLTIMO RESULTADO</div>
-        <div class="result-fruit" id="result">
+
+        <div class="result-title">
+            ÚLTIMO RESULTADO
+        </div>
+
+        <div
+            class="result-fruit"
+            id="result"
+        >
             — Nenhuma fruta —
         </div>
+
     </div>
 
 </section>
 
+
 <aside class="panel side">
 
-    <h2>Probabilidades</h2>
+    <h2>
+        Probabilidades
+    </h2>
 
-    <div class="chance-list" id="chanceList"></div>
+    <div
+        class="chance-list"
+        id="chanceList"
+    ></div>
+
 
     <div class="inventory">
+
         <div class="inventory-header">
-            <h2>Inventário</h2>
-            <span class="inventory-count" id="inventoryCount">
+
+            <h2>
+                Inventário
+            </h2>
+
+            <span
+                class="inventory-count"
+                id="inventoryCount"
+            >
                 0 frutas
             </span>
+
         </div>
 
-        <div class="inventory-grid" id="inventory"></div>
+
+        <div
+            class="inventory-grid"
+            id="inventory"
+        ></div>
+
     </div>
+
 
     <div class="history">
+
         <div class="inventory-header">
-            <h2>Histórico</h2>
-            <span class="inventory-count">últimos giros</span>
+
+            <h2>
+                Histórico
+            </h2>
+
+            <span class="inventory-count">
+                últimos giros
+            </span>
+
         </div>
 
-        <div class="history-list" id="history"></div>
+
+        <div
+            class="history-list"
+            id="history"
+        ></div>
+
     </div>
 
+
     <div class="legend">
-        <b style="color:white">Como funciona?</b><br>
-        Cada giro seleciona uma fruta usando as probabilidades
-        configuradas. Quanto menor a chance, mais rara é a fruta.
+
+        <b style="color:white">
+            Como funciona?
+        </b>
+
+        <br>
+
+        Cada giro seleciona uma fruta usando
+        as probabilidades configuradas.
+        Quanto menor a chance, mais rara é
+        a fruta.
+
     </div>
 
 </aside>
 
 </div>
+
 </main>
+
 
 <script>
 
 /*
 ===========================================================
-                 CONFIGURAÇÃO DO JOGO
+                       CONFIGURAÇÃO
 ===========================================================
 */
 
 const SPIN_COST = 2500;
 
+
 /*
- * As chances abaixo são CONFIGURÁVEIS.
- *
- * Elas não pretendem reproduzir uma probabilidade oficial
- * do Blox Fruits. Ajuste como quiser para o seu jogo.
- */
+As probabilidades são configuráveis.
+*/
 
 const fruits = [
 
-    // COMUNS
     {
         name: "Rocket",
         icon: "🚀",
@@ -604,7 +1151,7 @@ const fruits = [
         chance: 8
     },
 
-    // INCOMUNS
+
     {
         name: "Smoke",
         icon: "💨",
@@ -637,7 +1184,7 @@ const fruits = [
         chance: 4.5
     },
 
-    // RARAS
+
     {
         name: "Sand",
         icon: "🏜️",
@@ -670,7 +1217,7 @@ const fruits = [
         chance: 2
     },
 
-    // ÉPICAS
+
     {
         name: "Magma",
         icon: "🌋",
@@ -703,7 +1250,7 @@ const fruits = [
         chance: 0.7
     },
 
-    // LENDÁRIAS
+
     {
         name: "Buddha",
         icon: "🧘",
@@ -736,7 +1283,7 @@ const fruits = [
         chance: 0.25
     },
 
-    // MÍTICAS
+
     {
         name: "Mammoth",
         icon: "🦣",
@@ -766,7 +1313,7 @@ const fruits = [
         icon: "🌑",
         rarity: "Mítica",
         class: "mythical",
-        chance: 0.1
+        chance: 0.10
     },
 
     {
@@ -785,7 +1332,7 @@ const fruits = [
         chance: 0.07
     },
 
-    // ULTRA RARAS
+
     {
         name: "Gas",
         icon: "☁️",
@@ -825,41 +1372,93 @@ const fruits = [
         class: "divine",
         chance: 0.01
     }
+
 ];
 
 
 /*
 ===========================================================
-                    ESTADO DO JOGO
+                       ESTADO
 ===========================================================
 */
 
-let money = Number(localStorage.getItem("fruit_money")) || 100000;
+let money =
+    Number(
+        localStorage.getItem(
+            "fruit_money"
+        )
+    ) || 100000;
+
 
 let inventory =
-    JSON.parse(localStorage.getItem("fruit_inventory") || "{}");
+    JSON.parse(
+        localStorage.getItem(
+            "fruit_inventory"
+        ) || "{}"
+    );
+
 
 let history =
-    JSON.parse(localStorage.getItem("fruit_history") || "[]");
+    JSON.parse(
+        localStorage.getItem(
+            "fruit_history"
+        ) || "[]"
+    );
+
 
 let spinning = false;
 
 
 /*
 ===========================================================
-                 ELEMENTOS DA INTERFACE
+                       ELEMENTOS
 ===========================================================
 */
 
-const moneyEl = document.getElementById("money");
-const track = document.getElementById("track");
-const spinButton = document.getElementById("spinButton");
-const resultEl = document.getElementById("result");
-const inventoryEl = document.getElementById("inventory");
-const inventoryCountEl = document.getElementById("inventoryCount");
-const historyEl = document.getElementById("history");
-const chanceListEl = document.getElementById("chanceList");
-const spinPanel = document.getElementById("spinPanel");
+const moneyEl =
+    document.getElementById(
+        "money"
+    );
+
+const track =
+    document.getElementById(
+        "track"
+    );
+
+const spinButton =
+    document.getElementById(
+        "spinButton"
+    );
+
+const resultEl =
+    document.getElementById(
+        "result"
+    );
+
+const inventoryEl =
+    document.getElementById(
+        "inventory"
+    );
+
+const inventoryCountEl =
+    document.getElementById(
+        "inventoryCount"
+    );
+
+const historyEl =
+    document.getElementById(
+        "history"
+    );
+
+const chanceListEl =
+    document.getElementById(
+        "chanceList"
+    );
+
+const spinPanel =
+    document.getElementById(
+        "spinPanel"
+    );
 
 
 /*
@@ -869,7 +1468,11 @@ const spinPanel = document.getElementById("spinPanel");
 */
 
 function formatMoney(value) {
-    return value.toLocaleString("pt-BR");
+
+    return value.toLocaleString(
+        "pt-BR"
+    );
+
 }
 
 
@@ -877,48 +1480,499 @@ function save() {
 
     localStorage.setItem(
         "fruit_money",
-        money
+        String(money)
     );
 
     localStorage.setItem(
         "fruit_inventory",
-        JSON.stringify(inventory)
+        JSON.stringify(
+            inventory
+        )
     );
 
     localStorage.setItem(
         "fruit_history",
-        JSON.stringify(history)
+        JSON.stringify(
+            history
+        )
     );
-}
 
-
-function weightedRandom() {
-
-    const total =
-        fruits.reduce(
-            (sum, fruit) => sum + fruit.chance,
-            0
-        );
-
-    let random =
-        Math.random() * total;
-
-    for (const fruit of fruits) {
-
-        random -= fruit.chance;
-
-        if (random <= 0) {
-            return fruit;
-        }
-    }
-
-    return fruits[fruits.length - 1];
 }
 
 
 /*
 ===========================================================
-                  CONSTRUIR PROBABILIDADES
+                  SORTEIO PONDERADO
+===========================================================
+*/
+
+function weightedRandom() {
+
+    const total =
+        fruits.reduce(
+            (sum, fruit) =>
+                sum + fruit.chance,
+            0
+        );
+
+
+    let random =
+        Math.random() * total;
+
+
+    for (
+        const fruit of fruits
+    ) {
+
+        random -= fruit.chance;
+
+
+        if (
+            random <= 0
+        ) {
+
+            return fruit;
+
+        }
+
+    }
+
+
+    return fruits[
+        fruits.length - 1
+    ];
+
+}
+
+
+/*
+===========================================================
+                    CRIAR CARD
+===========================================================
+*/
+
+function createCard(fruit) {
+
+    const card =
+        document.createElement(
+            "div"
+        );
+
+    card.className =
+        "fruit-card";
+
+
+    card.innerHTML = `
+
+        <div class="fruit-icon">
+            ${fruit.icon}
+        </div>
+
+        <div class="fruit-name">
+            ${fruit.name}
+        </div>
+
+        <div class="rarity ${fruit.class}">
+            ${fruit.rarity}
+        </div>
+
+    `;
+
+
+    return card;
+
+}
+
+
+/*
+===========================================================
+                  CONSTRUIR ROLETA
+===========================================================
+*/
+
+function buildTrack(winner) {
+
+    track.innerHTML = "";
+
+
+    /*
+     * Criamos uma sequência grande.
+     *
+     * O vencedor fica no índice 90.
+     *
+     * Isso garante bastante movimento
+     * antes da parada.
+     */
+
+    const totalCards = 100;
+
+    const winnerIndex = 90;
+
+
+    const sequence = [];
+
+
+    for (
+        let i = 0;
+        i < totalCards;
+        i++
+    ) {
+
+        /*
+         * Coloca o vencedor
+         * exatamente no índice escolhido.
+         */
+
+        if (
+            i === winnerIndex
+        ) {
+
+            sequence.push(
+                winner
+            );
+
+        } else {
+
+            sequence.push(
+                fruits[
+                    Math.floor(
+                        Math.random()
+                        * fruits.length
+                    )
+                ]
+            );
+
+        }
+
+    }
+
+
+    sequence.forEach(
+        fruit => {
+
+            track.appendChild(
+                createCard(
+                    fruit
+                )
+            );
+
+        }
+    );
+
+
+    return winnerIndex;
+
+}
+
+
+/*
+===========================================================
+                    GIRO
+===========================================================
+*/
+
+function spin() {
+
+    /*
+     * Evita dois giros simultâneos.
+     */
+
+    if (spinning) {
+        return;
+    }
+
+
+    /*
+     * Verifica dinheiro.
+     */
+
+    if (
+        money < SPIN_COST
+    ) {
+
+        resultEl.innerHTML = `
+
+            <span style="color:#ff536b">
+                Beli insuficiente.
+            </span>
+
+        `;
+
+        return;
+
+    }
+
+
+    spinning = true;
+
+
+    /*
+     * Cobra antes do giro.
+     */
+
+    money -= SPIN_COST;
+
+
+    /*
+     * Sorteia o vencedor.
+     */
+
+    const winner =
+        weightedRandom();
+
+
+    /*
+     * Cria a sequência.
+     */
+
+    const winnerIndex =
+        buildTrack(
+            winner
+        );
+
+
+    /*
+     * Atualiza dinheiro.
+     */
+
+    render();
+
+
+    /*
+     * IMPORTANTE:
+     *
+     * Resetamos a transição ANTES
+     * de calcular o movimento.
+     */
+
+    track.style.transition =
+        "none";
+
+
+    track.style.transform =
+        "translate3d(0px,0px,0px)";
+
+
+    /*
+     * Força o navegador a recalcular
+     * layout.
+     */
+
+    track.offsetWidth;
+
+
+    /*
+     * Agora encontramos o card vencedor.
+     */
+
+    const cards =
+        track.querySelectorAll(
+            ".fruit-card"
+        );
+
+
+    const targetCard =
+        cards[
+            winnerIndex
+        ];
+
+
+    if (!targetCard) {
+
+        spinning = false;
+
+        render();
+
+        return;
+
+    }
+
+
+    /*
+     * Dimensões da roleta.
+     */
+
+    const roulette =
+        document.querySelector(
+            ".roulette"
+        );
+
+
+    const rouletteRect =
+        roulette.getBoundingClientRect();
+
+
+    /*
+     * Centro da roleta.
+     */
+
+    const rouletteCenter =
+        rouletteRect.width / 2;
+
+
+    /*
+     * Centro REAL do card.
+     *
+     * getBoundingClientRect é mais
+     * confiável aqui que offsetLeft,
+     * especialmente em celular.
+     */
+
+    const cardRect =
+        targetCard.getBoundingClientRect();
+
+
+    const trackRect =
+        track.getBoundingClientRect();
+
+
+    const cardCenter =
+        (
+            cardRect.left -
+            trackRect.left
+        ) +
+        (
+            cardRect.width / 2
+        );
+
+
+    /*
+     * Distância que precisamos mover.
+     */
+
+    const finalX =
+        rouletteCenter -
+        cardCenter;
+
+
+    /*
+     * Fazemos o giro.
+     *
+     * Sem randomOffset!
+     *
+     * Assim o vencedor fica
+     * matematicamente no centro.
+     */
+
+    requestAnimationFrame(
+        () => {
+
+            track.style.transition =
+                "transform 5.2s cubic-bezier(.08,.78,.12,1)";
+
+            track.style.transform =
+                `translate3d(${finalX}px,0,0)`;
+
+        }
+    );
+
+
+    /*
+     * Finalização.
+     */
+
+    setTimeout(
+        () => {
+
+            /*
+             * Adiciona inventário.
+             */
+
+            inventory[
+                winner.name
+            ] =
+                (
+                    inventory[
+                        winner.name
+                    ] || 0
+                ) + 1;
+
+
+            /*
+             * Histórico.
+             */
+
+            history.unshift({
+
+                name:
+                    winner.name,
+
+                time:
+                    Date.now()
+
+            });
+
+
+            history =
+                history.slice(
+                    0,
+                    30
+                );
+
+
+            /*
+             * Resultado.
+             */
+
+            resultEl.innerHTML = `
+
+                <span
+                    class="${winner.class}"
+                >
+                    ${winner.icon}
+                    ${winner.name}
+                </span>
+
+            `;
+
+
+            /*
+             * Flash.
+
+             */
+
+            spinPanel.classList.remove(
+                "flash"
+            );
+
+
+            void spinPanel.offsetWidth;
+
+
+            spinPanel.classList.add(
+                "flash"
+            );
+
+
+            /*
+             * Salva.
+
+             */
+
+            save();
+
+
+            /*
+             * Libera botão.
+
+             */
+
+            spinning = false;
+
+
+            render();
+
+
+        },
+        5400
+    );
+
+}
+
+
+/*
+===========================================================
+                    PROBABILIDADES
 ===========================================================
 */
 
@@ -926,92 +1980,174 @@ function renderChances() {
 
     const rarityData = {};
 
-    fruits.forEach(fruit => {
 
-        if (!rarityData[fruit.rarity]) {
+    fruits.forEach(
+        fruit => {
 
-            rarityData[fruit.rarity] = {
-                chance: 0,
-                class: fruit.class
-            };
+            if (
+                !rarityData[
+                    fruit.rarity
+                ]
+            ) {
+
+                rarityData[
+                    fruit.rarity
+                ] = {
+
+                    chance: 0,
+
+                    class:
+                        fruit.class
+
+                };
+
+            }
+
+
+            rarityData[
+                fruit.rarity
+            ].chance +=
+                fruit.chance;
+
         }
+    );
 
-        rarityData[fruit.rarity].chance += fruit.chance;
-    });
 
-    chanceListEl.innerHTML = "";
+    chanceListEl.innerHTML =
+        "";
 
-    Object.entries(rarityData).forEach(
+
+    Object.entries(
+        rarityData
+    ).forEach(
         ([rarity, data]) => {
 
             const el =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
 
-            el.className = "chance";
+
+            el.className =
+                "chance";
+
 
             el.innerHTML = `
-                <div class="chance-left">
-                    <div class="dot ${data.class}"
-                         style="background:currentColor"></div>
 
-                    <span class="${data.class}">
+                <div class="chance-left">
+
+                    <div
+                        class="dot"
+                        style="
+                            background:
+                            var(--${data.class});
+                        "
+                    ></div>
+
+                    <span
+                        class="${data.class}"
+                    >
                         ${rarity}
                     </span>
+
                 </div>
 
-                <span class="chance-value">
+                <span
+                    class="chance-value"
+                >
                     ${data.chance.toFixed(2)}%
                 </span>
+
             `;
 
-            chanceListEl.appendChild(el);
+
+            chanceListEl.appendChild(
+                el
+            );
+
         }
     );
+
 }
 
 
 /*
 ===========================================================
-                    INVENTÁRIO
+                     INVENTÁRIO
 ===========================================================
 */
 
 function renderInventory() {
 
-    inventoryEl.innerHTML = "";
+    inventoryEl.innerHTML =
+        "";
 
     let total = 0;
 
-    Object.keys(inventory).forEach(name => {
 
-        total += inventory[name];
+    Object.keys(
+        inventory
+    ).forEach(
+        name => {
 
-        const fruit =
-            fruits.find(f => f.name === name);
+            const amount =
+                inventory[name];
 
-        if (!fruit) return;
 
-        const el =
-            document.createElement("div");
+            total += amount;
 
-        el.className = "inv";
 
-        el.title =
-            `${fruit.name} — ${fruit.rarity}`;
+            const fruit =
+                fruits.find(
+                    f =>
+                        f.name === name
+                );
 
-        el.innerHTML = `
-            ${fruit.icon}
-            <span class="inv-count">
-                x${inventory[name]}
-            </span>
-        `;
 
-        inventoryEl.appendChild(el);
-    });
+            if (!fruit) {
+                return;
+            }
 
-    if (total === 0) {
+
+            const el =
+                document.createElement(
+                    "div"
+                );
+
+
+            el.className =
+                "inv";
+
+
+            el.title =
+                `${fruit.name} — ${fruit.rarity}`;
+
+
+            el.innerHTML = `
+
+                ${fruit.icon}
+
+                <span class="inv-count">
+                    x${amount}
+                </span>
+
+            `;
+
+
+            inventoryEl.appendChild(
+                el
+            );
+
+        }
+    );
+
+
+    if (
+        total === 0
+    ) {
 
         inventoryEl.innerHTML = `
+
             <div style="
                 grid-column:1/-1;
                 text-align:center;
@@ -1021,11 +2157,19 @@ function renderInventory() {
             ">
                 Seu inventário está vazio.
             </div>
+
         `;
+
     }
 
+
     inventoryCountEl.textContent =
-        `${total} fruta${total === 1 ? "" : "s"}`;
+        `${total} fruta${
+            total === 1
+                ? ""
+                : "s"
+        }`;
+
 }
 
 
@@ -1037,40 +2181,16 @@ function renderInventory() {
 
 function renderHistory() {
 
-    historyEl.innerHTML = "";
+    historyEl.innerHTML =
+        "";
 
-    history.slice(0, 15).forEach(item => {
 
-        const fruit =
-            fruits.find(f => f.name === item.name);
-
-        if (!fruit) return;
-
-        const el =
-            document.createElement("div");
-
-        el.className = "history-item";
-
-        el.innerHTML = `
-            <span style="font-size:19px">
-                ${fruit.icon}
-            </span>
-
-            <strong class="${fruit.class}">
-                ${fruit.name}
-            </strong>
-
-            <span>
-                ${fruit.rarity}
-            </span>
-        `;
-
-        historyEl.appendChild(el);
-    });
-
-    if (!history.length) {
+    if (
+        history.length === 0
+    ) {
 
         historyEl.innerHTML = `
+
             <div style="
                 color:#667088;
                 font-size:11px;
@@ -1079,8 +2199,72 @@ function renderHistory() {
             ">
                 Nenhum giro ainda.
             </div>
+
         `;
+
+        return;
+
     }
+
+
+    history
+        .slice(0,15)
+        .forEach(
+            item => {
+
+                const fruit =
+                    fruits.find(
+                        f =>
+                            f.name ===
+                            item.name
+                    );
+
+
+                if (!fruit) {
+                    return;
+                }
+
+
+                const el =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                el.className =
+                    "history-item";
+
+
+                el.innerHTML = `
+
+                    <span
+                        style="
+                            font-size:19px
+                        "
+                    >
+                        ${fruit.icon}
+                    </span>
+
+                    <strong
+                        class="${fruit.class}"
+                    >
+                        ${fruit.name}
+                    </strong>
+
+                    <span>
+                        ${fruit.rarity}
+                    </span>
+
+                `;
+
+
+                historyEl.appendChild(
+                    el
+                );
+
+            }
+        );
+
 }
 
 
@@ -1093,211 +2277,30 @@ function renderHistory() {
 function render() {
 
     moneyEl.textContent =
-        formatMoney(money);
+        formatMoney(
+            money
+        );
+
 
     renderInventory();
+
     renderHistory();
+
     renderChances();
 
+
     spinButton.disabled =
-        spinning || money < SPIN_COST;
+        spinning ||
+        money < SPIN_COST;
+
 }
 
 
 /*
 ===========================================================
-                 CARTAS DA ROLETA
+                       EVENTO
 ===========================================================
 */
-
-function createCard(fruit) {
-
-    const el =
-        document.createElement("div");
-
-    el.className = "fruit-card";
-
-    el.innerHTML = `
-        <div class="fruit-icon">
-            ${fruit.icon}
-        </div>
-
-        <div class="fruit-name">
-            ${fruit.name}
-        </div>
-
-        <div class="rarity ${fruit.class}">
-            ${fruit.rarity}
-        </div>
-    `;
-
-    return el;
-}
-
-
-/*
-===========================================================
-               ANIMAÇÃO DO GIRO
-===========================================================
-*/
-
-function buildTrack(winner) {
-
-    track.innerHTML = "";
-
-    /*
-     * Criamos várias rodadas de frutas para
-     * dar a sensação de uma roleta longa.
-     */
-
-    const sequence = [];
-
-    for (let round = 0; round < 8; round++) {
-
-        fruits.forEach(fruit => {
-            sequence.push(fruit);
-        });
-    }
-
-    /*
-     * O vencedor fica próximo do final.
-     */
-
-    const winnerIndex =
-        sequence.length - 12;
-
-    sequence[winnerIndex] = winner;
-
-    sequence.forEach(fruit => {
-
-        track.appendChild(
-            createCard(fruit)
-        );
-    });
-
-    return winnerIndex;
-}
-
-
-function spin() {
-
-    if (spinning) return;
-
-    if (money < SPIN_COST) {
-
-        resultEl.innerHTML = `
-            <span style="color:#ff536b">
-                Beli insuficiente.
-            </span>
-        `;
-
-        return;
-    }
-
-    spinning = true;
-
-    money -= SPIN_COST;
-
-    /*
-     * O resultado é escolhido ANTES
-     * da animação.
-     */
-
-    const winner =
-        weightedRandom();
-
-    const winnerIndex =
-        buildTrack(winner);
-
-    render();
-
-    const cards =
-        track.querySelectorAll(".fruit-card");
-
-    const targetCard =
-        cards[winnerIndex];
-
-    /*
-     * Esperamos o DOM calcular as dimensões.
-     */
-
-    requestAnimationFrame(() => {
-
-        const roulette =
-            document.querySelector(".roulette");
-
-        const rouletteCenter =
-            roulette.clientWidth / 2;
-
-        const cardCenter =
-            targetCard.offsetLeft +
-            targetCard.offsetWidth / 2;
-
-        const offset =
-            rouletteCenter - cardCenter;
-
-        /*
-         * Pequena variação aleatória
-         * deixa cada giro diferente.
-         */
-
-        const randomOffset =
-            (Math.random() - .5) * 20;
-
-        track.style.transition =
-            "transform 5.2s cubic-bezier(.08,.78,.12,1)";
-
-        track.style.transform =
-            `translateX(${offset + randomOffset}px)`;
-    });
-
-    setTimeout(() => {
-
-        /*
-         * Adiciona ao inventário.
-         */
-
-        inventory[winner.name] =
-            (inventory[winner.name] || 0) + 1;
-
-        /*
-         * Histórico.
-         */
-
-        history.unshift({
-            name: winner.name,
-            time: Date.now()
-        });
-
-        history =
-            history.slice(0, 30);
-
-        resultEl.innerHTML = `
-            <span class="${winner.class}">
-                ${winner.icon}
-                ${winner.name}
-            </span>
-        `;
-
-        spinPanel.classList.remove("flash");
-
-        /*
-         * força reflow para reiniciar animação
-         */
-
-        void spinPanel.offsetWidth;
-
-        spinPanel.classList.add("flash");
-
-        save();
-
-        spinning = false;
-
-        render();
-
-    }, 5400);
-}
-
 
 spinButton.addEventListener(
     "click",
@@ -1307,7 +2310,7 @@ spinButton.addEventListener(
 
 /*
 ===========================================================
-                  INICIALIZAÇÃO
+                    INICIALIZAÇÃO
 ===========================================================
 */
 
